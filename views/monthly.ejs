@@ -1,0 +1,30 @@
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Note</th>
+        <th>Payment Method</th>
+        <th>Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% var total=0; %>
+    <% for(var i=0; i< expense.length; i++) { %>
+      <tr>
+        <td class="<%= expense[i].payment_mode %>"><%= i+1 %></td>
+        <td><%= expense[i].note %></td>
+        <td><%= expense[i].payment_mode %></td>
+        <td><%= expense[i].amount %></td>
+      </tr>
+       <%  total+= parseInt(expense[i].amount) %>
+    <% } %>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th></th>
+        <th></th>
+        <th>Total</th>
+        <th><%= total %></th>
+      </tr>
+    </tfoot>
+  </table>
