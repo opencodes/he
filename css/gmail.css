@@ -43,23 +43,21 @@ body, td, input, textarea, select {
 .logo-text {
   	width: 152px;
 }
-.mail{
-	
-}
-
 .table {
   width: 100%;
   background-color:#EEEEEE;	
+  border-collapse: collapse;
 }
 td {
   background-color: #EEEEEE;
   border-bottom: 2px solid #DDDDDD;
-  height: 72px;
+  height: 50px;
   padding: 15px 0;
   vertical-align: top;
 }
 td .icon {
-  	width: 50px;
-  	padding-left:25px;
-  	padding-right: 16px;
+  height: 50px;
+  padding-left: 30px;
+  padding-right: 16px;
+  width: 50px;
 }
