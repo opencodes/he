@@ -1,22 +1,28 @@
 $(document).ready( function() {
 	var home_page = "";
+	$.postJSON = function(url, data, func) { $.post(url+(url.indexOf("?") == -1 ? "?" : "&")+"callback=?", data, func, "json"); }
+	//Load Today Expense
 	$.getJSON('./js/data.js',{cache: false},function(data){
-		home_page = new EJS({url: './views/monthly.ejs'}).render(data);
+		home_page = new EJS({url: './views/gmail.ejs'}).render(data);
 		$('#news-container').html(home_page);
 	});
-	//Add Expense
+	
+	//Add Expense Form Display
 	$('#add-expense').click(function(event){
 		$('.loader').show();
 		var html = new EJS({url: './views/add.ejs'}).render();
 		$('#news-container').html(html);
 	});
-	$('#add-expense-submit').on('click',function(event){
-		alert('sadsd');
+	
+	//Add Expense
+	$('#news-container').on('click','#add-expense-submit',function(event){
 		event.preventDefault();
 		var params = $('#add-expense-form').serialize();
-		$.post('expense_api.php',{cache: false,param:params},function(data){
+		$.postJSON('expense_api.php',{cache: false,param:params},function(data){
 			var html = new EJS({url: './views/monthly.ejs'}).render(data);
 			$('#news-container').html(html);
 		});
 	});
+	
+	
 });
