@@ -2,13 +2,13 @@
     
     <tbody>
     <% var total=0; %>
-    <% for(var i=0; i< 20; i++) { %>
+    <% for(var i=0; i< data.length; i++) { %>
       <tr >
       <td ><div class="icon"><img alt="" src="img/people.png" width="50"/></div></td>
-	  <td><h4 >Like the 60s? Our second Cannes  Creativity infog...</h4>
-	  
-	  <p>Hi dfas df ds fds f dsf ds fds fds f dsf ds fds f dsf dsf ds f dsf dsf ds f </p></td>
-	  </tr>
-	 
+    <td><h4 ><%=  data[i].note %></h4>
+    
+    <p><%=  data[i].note %></p></td>
+    </tr>
+   
     <% } %>
    </table>
