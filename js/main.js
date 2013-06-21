@@ -2,7 +2,7 @@ $(document).ready( function() {
 	var home_page = "";
 	$.postJSON = function(url, data, func) { $.post(url+(url.indexOf("?") == -1 ? "?" : "&")+"callback=?", data, func, "json"); }
 	//Load Today Expense
-	$.getJSON('./server/expense_api.php',{cache: false},function(data){
+	$.getJSON('./server/expense_api.php',{cache: false,param:'action=list&format=json'},function(data){
 		home_page = new EJS({url: './views/gmail.ejs'}).render({data:data.expense});
 		$('#news-container').html(home_page);
 	});
@@ -18,7 +18,7 @@ $(document).ready( function() {
 	$('#news-container').on('click','#add-expense-submit',function(event){
 		event.preventDefault();
 		var params = $('#add-expense-form').serialize();
-		$.postJSON('expense_api.php',{cache: false,param:params},function(data){
+		$.postJSON('./server/expense_api.php',{cache: false,param:params+'&action=add&format=json'},function(data){
 			var html = new EJS({url: './views/monthly.ejs'}).render(data);
 			$('#news-container').html(html);
 		});
