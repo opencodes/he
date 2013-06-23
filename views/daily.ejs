@@ -1,0 +1,11 @@
+<table class="table table-hover" border="0">    
+    <tbody>
+    <% var total=0; %>
+    <% for(var i=0; i< data.length; i++) { %>
+      <tr class="<%=  data[i].payment_mode %> all">
+	      <td class='icons'><div class="icon <%=  data[i].payment_mode %> "></div></td>
+	      <td><h4 ><%=  data[i].note %></h4><p><%=  data[i].note %></p></td>
+	       <td><small><%=  data[i].fdate %> </small><br><small><%=  data[i].ftime %> </small></td>
+      </tr>   
+    <% } %>
+</table>

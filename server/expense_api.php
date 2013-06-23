@@ -5,17 +5,19 @@ $db = mysql_select_db('monthly_expense')or die(mysql_error());
 //Server Request Params
 $params = "";$param = array();
 if (isset($_POST)) {
-	$params = $_POST['param'];
-}elseif (isset($_GET)){
-	$params = $_GET['param'];
+	$param = $_POST;
 }
-$p1 = explode('&',$params);
-foreach ($p1 as $p2){
-	$p3 = explode('=',$p2);
-	$param[$p3[0]] = $p3[1];
+if (isset($_GET)){
+	$param = $_GET;
+	//print_r($param);
+	
 }
-function listData() {
-	$sql = "SELECT * FROM expense";
+
+function listData($device_id,$subquery) {
+	
+	$sql = "SELECT *, DATE_FORMAT(date,'%b %d %Y') as fdate, DATE_FORMAT(NOW(),'%h:%i %p') as ftime  FROM expense WHERE device_id='".$device_id."' ";
+	$sql .= $subquery ." ORDER BY date";
+	//echo $sql;
 	$query = mysql_query($sql)or die(mysql_error());
 	$data = array();
 	while ($row = mysql_fetch_object($query)) {
@@ -31,16 +33,30 @@ function addExpense($param) {
 	}
 	return  false;	
 }
-
+$deviceId = $param['device_id'];
 switch ($param[action]) {
-	case 'list':
-		$data = listData();
+	case 'daily':
+		$subQuery = "AND MONTH(`date`) = MONTH(NOW()) AND YEAR(`date`)= YEAR(NOW())";
+		$data = listData($deviceId,$subQuery);
+	break;
+	case 'monthly':
+		$subQuery = "AND YEAR(`date`)= YEAR(NOW())";
+		$data = listData($deviceId,$subQuery);
+	break;
+	case 'yearly':
+		$subQuery = "";
+		$data = listData($deviceId,$subQuery);
+	break;
+	case 'all':
+		$subQuery = "";
+		$data = listData($deviceId,$subQuery);
 	break;
 	case 'add':
-		$data = addExpense($param);
-	
+		addExpense($param);
+		$data = listData($deviceId);	
 	default:
-		$data = listData();
+		$subQuery = "AND MONTH(`date`) = MONTH(NOW()) AND YEAR(`date`)= YEAR(NOW())";
+		$data = listData($deviceId,$subQuery);
 	break;
 }
 echo json_encode($data);

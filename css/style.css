@@ -1,101 +1,30 @@
-body {
-  padding-bottom:35px;
+.logo-text {
+  padding-left: 10px;
+  padding-top: 18px;
+  width: auto;
 }
-.logo-image{
-	margin-right:10px;
+select {
+  background-color: #FFFFFF;
+  border: 1px solid #CCCCCC;
+  width: 120px;
 }
-select.top-option{
-	width:30%;
-	float:right;
-	height:36px;
-	margin-bottom:0px;
-	color:#30AAD7;
-	display:none;
+.credit_card{background-color: #90C140;}
+.debit_card{background-color: #F9A43E;}
+.cash{background-color: #D94735;}
+td { padding: 10px;}
+td .icon {
+  height: 50px;
+  padding-left: 0;
+  padding-right: 0;
+  width: 50px;
 }
-.navbar-fixed-top .navbar-inner, .navbar-static-top .navbar-inner {
-  border-bottom: 2px solid #D2D2D2;
-  box-shadow:none;
+td.icons{width:50px;}
+.row {
+  padding: 10px 0;
 }
-.refresh-image{
-  padding:6px;
+.header-top { 
+  padding: 11px 10px;
 }
-.top-icons {
-  float: right;
-  height:36px;
-  width:36px;
-  line-height:36px;
-  padding-left:18px;
-  background-color:#BBBBBB;
+.header-top .logo {
+  margin:0;
 }
-.top-icons:hover{background-color:#30AAD7;}
-.gap{
-	  border-left:1px solid #E5E5E5;
-	  width:10px;
-	  height:36px;
-	  float:right;
-	  margin-left:10px;
-	  display:none;
-}
-h1 {
-  font-size: 25px;
-  margin: 0;
-  font-weight:normal;
-  color:#ef4823;
-}
-a,a:hover {
-  color: #30AAD7;
-  text-decoration: none;
-}
-.footer {
-    border-bottom:none;
-    border-top: 1px solid #D2D2D2;
-}
-li.footer-menu {margin:0; padding:0; list-style:none;}
-.footer-menu.last a {width:28%}
-.footer-menu a {
-  float: left;
-  font-weight: bold;
-  height: 30px;
-  padding-top: 10px;
-  text-align: center;
-  width: 24%;
-}
-.footer-menu a:hover, .footer-menu.active a{
-  background-color:#30AAD7 !important;
-  color:#fff;
-}
-
-.last{
-  border:none;
-}
-.content .span12 {
-  background-color:#F5F5F5;
-  padding:5px 10px;
-  margin-bottom:5px;
-}
-#add-expense .span12{
-	background-color:#ffffff;
-}
-.content {
-  font-size: 12px;
-  margin-bottom: 15px;
-  padding-top: 60px;
-}
-.navbar {
-  background-color: #E5E5E5; 
-}
-.action{
-  clear:both;
-  height:25px;
-}
-.credit_card {border-left:10px solid #9AB935;}
-.debit_card {border-left:10px solid #527b88;}
-.cash {border-left:10px solid #e34923;}
-
-#news-container {margin:0;}
-.span12 {margin-left:0 !important;}
-
-.navbar-fixed-bottom.footer .span12 {padding:0; margin:0; width:100%}
-.navbar-fixed-bottom.footer .span12 ul, .navbar-fixed-bottom.footer .span12 ol {padding:0; margin:0; overflow:hidden;}
-.active {background-color:#30AAD7}
-.active a{color: #FFFFFF;}
