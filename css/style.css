@@ -28,3 +28,14 @@ td.icons{width:50px;}
 .header-top .logo {
   margin:0;
 }
+.footer-menu.active {
+  background-color: #2686A9;
+  color:#fff;
+}
+.footer-menu:hover,.footer-menu:hover a{
+  background-color: #2686A9;
+}
+.header-top .text {  
+  margin-left: 5px;
+  padding: 12px;
+}

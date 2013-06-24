@@ -14,9 +14,23 @@ $(document).ready( function() {
 		}
 		
 	});	
+	//Refresh Data
+	$('#refresh-data').click(function(event){
+		event.preventDefault();
+		var selected = $('.logo-text select').val();
+		params.action = selected;
+		$.getJSON('./server/expense_api.php',params,function(data){
+			if(data && data.expense){
+				var html = new EJS({url: './views/'+selected+'.ejs'}).render({data:data.expense});
+				$('#news-container').html(html);
+			}
+			
+		});	
+	});
 	//Add Expense Form Display
 	$('#add-expense').click(function(event){
 		$('.loader').show();
+		$('#refresh-data').hide();
 		var html = new EJS({url: './views/add.ejs'}).render();
 		$('#news-container').html(html);
 	});
@@ -24,10 +38,13 @@ $(document).ready( function() {
 	//Add Expense
 	$('#news-container').on('click','#add-expense-submit',function(event){
 		event.preventDefault();
-		var params = $('#add-expense-form').serialize();
-			params += '&action=add&device_id='+deviceId+'&format=json';
-		$.post('./server/expense_api.php',{cache: false,param:params},function(data){
+		params.action = 'add';
+		params.amount = $('#amount').val(); 
+		params.payment_method = $('#payment_method').val(); 
+		params.note = $('#note').val(); 
+		$.post('./server/expense_api.php',params,function(data){
 			var datas = JSON.parse(data);
+			$('#refresh-data').show();
 			if(datas && datas.expense){
 				var html = new EJS({url: './views/daily.ejs'}).render({data:datas.expense});
 				$('#news-container').html(html);

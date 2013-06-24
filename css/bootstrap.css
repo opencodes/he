@@ -209,3 +209,6 @@ select {
   border: 1px solid #CCCCCC;
   width: 220px;
 }
+form{
+	padding:10px;
+}
