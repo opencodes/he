@@ -4,8 +4,9 @@
     <% for(var i=0; i< data.length; i++) { %>
       <tr class="<%=  data[i].payment_mode %> all">
         <td class='icons'><div class="icon <%=  data[i].payment_mode %> "></div></td>
-        <td><h4 ><%=  data[i].note %></h4><p><%=  data[i].note %></p></td>
-         <td><small><%=  data[i].fdate %> </small><br><small><%=  data[i].ftime %> </small></td>
+        <td><h4 ><%=  data[i].note %></h4><small><%=  data[i].payment_mode.replace('_',' ').toUpperCase() %></small></td>
+        <td><small>Rs. <%=  data[i].amount %> </small></td>
+        <td><small><%=  data[i].fdate %> </small><br><small><%=  data[i].ftime %> </small></td>
       </tr>   
     <% } %>
 </table>
