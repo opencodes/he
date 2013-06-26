@@ -2,21 +2,21 @@
   <div class="span12">
 	<fieldset>
 		<label><strong>Amount</strong></label> 
-		<input type="number" placeholder="00.00" name="amount" value="" id="amount" required> 
+		<input type="number" placeholder="00.00" name="amount" value="" id="amount" class="input-block-level" required> 
 		<span class="amount-help help-block"></span> 
 		<label><strong>Payment Method</strong></label> 
-    	<select name="payment_method" id="payment_method">
+    	<select name="payment_method" id="payment_method" class="input-block-level">
 			<option value="credit_card">Credit Card</option>
 			<option value="debit_card">Debit Card</option>
 			<option value="cash">Cash</option>		
 		</select>
     <span class="help-block"></span> 
     <label><strong> Note </strong></label> 
-    <input type="text" placeholder="Purchase" name="note" value="" id="note" require> 
+    <input type="text" placeholder="Purchase" name="note" value="" id="note" class="input-block-level" required> 
     <span class="note-help help-block"></span> 	
 		<div >
-	    <button type="button" id="add-expense-submit" class="btn btn-danger btn-large">Save changes</button>
-	    <button type="reset" class="btn btn-large">Cancel</button>
+	    <button type="button" id="add-expense-submit" class="btn btn-info btn-large btn-block">Save changes</button>
+	    <button type="reset" class="btn btn-large btn-block">Cancel</button>
     </div>
 	</fieldset>
 	</div>

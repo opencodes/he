@@ -5,10 +5,10 @@ $username = "phonegapdb";
 $dbname = "phonegapdb";
 $password = 'Server123#';
 //These variable values need to be changed by you before deploying
-//$hostname = "localhost";
-//$username = "root";
-//$dbname = "monthly_expense";
-//$password = '';       
+/*$hostname = "localhost";
+$username = "root";
+$dbname = "monthly_expense";
+$password = ''; */      
 //Connecting to your database
 mysql_connect($hostname, $username, $password) OR DIE ("Unable to connect to database! Please try again later.");
 mysql_select_db($dbname);
@@ -20,9 +20,13 @@ if (isset($_POST['action'])) {
 if (isset($_GET['action'])){
 	$param = $_GET;
 }
+$date = date_create($param[date]);
+$day = date_format($date, 'd');
+$month = date_format($date, 'm');
+$year = date_format($date, 'Y');
 function listData($device_id,$subquery) {
 	
-	$sql = "SELECT *,DATE_FORMAT(date,'%d') as fday,DATE_FORMAT(date,'%b') as fmonth,DATE_FORMAT(date,'%Y') as fyear, DATE_FORMAT(NOW(),'%h %i %p') as ftime  FROM expense WHERE device_id='".$device_id."' ";
+	$sql = "SELECT *,DATE_FORMAT(date,'%d') as fday,DATE_FORMAT(date,'%b') as fmonth,DATE_FORMAT(date,'%Y') as fyear, DATE_FORMAT(date,'%h:%i %p') as ftime  FROM expense WHERE device_id='".$device_id."' ";
 	$sql .= $subquery ." ORDER BY date DESC";
 	//echo $sql;
 	$query = mysql_query($sql)or die(mysql_error());
@@ -36,26 +40,29 @@ function listData($device_id,$subquery) {
 function addExpense($deviceId,$param) {
 	//print_r($param);
 	$sql = "INSERT INTO  `expense` (`id`, `amount`, `payment_mode`, `note`, `date`, `device_id`) 
-			VALUES (NULL, '".$param[amount]."', '".$param[payment_method]."', '".$param[note]."', CURRENT_TIMESTAMP, '".$deviceId."');";
+			VALUES (NULL, '".$param[amount]."', '".$param[payment_method]."', '".$param[note]."', '".$param[date]."', '".$deviceId."');";
 	//echo  $sql;
 	if (mysql_query($sql)) {
 		return true;
 	}
 	return  false;	
 }
-
+function createLog($text) {
+	$sql = "INSERT INTO  `log` (`id`, `text`) VALUES (NULL, '$text');";
+			mysql_query($sql);
+}
 $deviceId = $param['device_id'];
 switch ($param[action]) {
 	case 'daily':
-		$subQuery = " AND MONTH(`date`) = MONTH(NOW()) AND DAY(`date`) = DAY(NOW()) AND YEAR(`date`)= YEAR(NOW())";
+		$subQuery = " AND MONTH(`date`) =".$month." AND DAY(`date`) = ".$day." AND YEAR(`date`)= ".$year;
 		$data = listData($deviceId,$subQuery);
 	break;
 	case 'monthly':
-		$subQuery = " AND MONTH(`date`) = MONTH(NOW()) AND YEAR(`date`)= YEAR(NOW())";
+		$subQuery = " AND MONTH(`date`) = ".$month." AND YEAR(`date`)= ".$year."";
 		$data = listData($deviceId,$subQuery);
 	break;
 	case 'yearly':
-		$subQuery = " AND YEAR(`date`)= YEAR(NOW())";
+		$subQuery = " AND YEAR(`date`)= ".$year;
 		$data = listData($deviceId,$subQuery);
 	break;
 	case 'all':
@@ -64,10 +71,10 @@ switch ($param[action]) {
 	break;
 	case 'add':
 		addExpense($deviceId,$param);
-		$subQuery = "AND MONTH(`date`) = MONTH(NOW()) AND YEAR(`date`)= YEAR(NOW())";
+		$subQuery = " AND MONTH(`date`) =".$month." AND DAY(`date`) = ".$day." AND YEAR(`date`)= ".$year;
 		$data = listData($deviceId,$subQuery);	
 	default:
-		$subQuery = " AND MONTH(`date`) = MONTH(NOW()) AND DAY(`date`) = DAY(NOW()) AND YEAR(`date`)= YEAR(NOW())";
+		$subQuery = " AND MONTH(`date`) =".$month." AND DAY(`date`) = ".$day." AND YEAR(`date`)= ".$year;
 		$data = listData($deviceId,$subQuery);
 	break;
 }

@@ -6,7 +6,7 @@
         <tr class="total">
 	        <td><strong>Total</strong></td>
 	        <td><strong>Rs. <%= total %> </strong></td>
-	        <td><strong><%=  data[i].fday %> <%=  data[i].fmonth %> <%=  data[i].fyear %></strong></td>        
+	        <td><strong><%=  data[i-1].fday %> <%=  data[i-1].fmonth %> <%=  data[i-1].fyear %></strong></td>        
 	      </tr>
       <% total = 0;start=data[i].fday; %>   
 	    <% } %>

@@ -1,14 +1,20 @@
-$(document).ready( function() {
+function init(device_id) {
 	//Load Today Expense
-	var deviceId = '1221dqwe12e1';
+	var deviceId = device_id;
 	var params = {
 			cache: false,
 			action:'daily',
 			device_id:deviceId,
-			format:'json'	
+			format:'json'
 	};
 	var APIUrl = "http://rkjha.com/android/expense_api.php?jsonp_callback=?";
-	 $.ajax({
+	var mysqlDateTime = function(){
+		var d = new Date();
+		var dateTime = d.getFullYear()+'-'+("0" + d.getMonth()).slice(-2)+'-'+("0" + d.getDate()).slice(-2)+' '+("0" + d.getHours()).slice(-2)+':'+("0" + d.getMinutes()).slice(-2)+':'+("0" + d.getSeconds()).slice(-2);
+		return dateTime;
+	}
+	params.date = mysqlDateTime();
+	$.ajax({
 			type: 'GET',
 			url: APIUrl,
 			data: params,
@@ -17,10 +23,14 @@ $(document).ready( function() {
 				if(data && data.expense){
 					var html = new EJS({url: './views/daily.ejs'}).render({data:data.expense});
 					$('#news-container').html(html);
-					$('.loader').hide();
+					
+				}else{
+					$('#news-container').html('<div class="alert alert-info"> No Record Found !</div>');
 				}
+				$('.loader').hide();
 			}).fail(function(error){
 				console.log('error');
+				$('.loader').hide();
 	 });
 	
 	//Refresh Data
@@ -29,13 +39,16 @@ $(document).ready( function() {
 		event.preventDefault();
 		var selected = $('.top-menu li.active').data('value');
 		params.action = selected;
+		params.date = mysqlDateTime();
 		$.getJSON(APIUrl,params,function(data){
 			if(data && data.expense){
 				var html = new EJS({url: './views/'+selected+'.ejs'}).render({data:data.expense});
 				$('#news-container').html(html);
-				$('.loader').hide();
+				
+			}else{
+				$('#news-container').html('<div class="alert alert-info" > No Record Found !</div>');
 			}
-			
+			$('.loader').hide();
 		});	
 	});
 	//Add Expense Form Display
@@ -59,7 +72,8 @@ $(document).ready( function() {
 		params.action = 'add';
 		params.amount = $('#amount').val(); 
 		params.payment_method = $('#payment_method').val(); 
-		params.note = $('#note').val(); 
+		params.note = $('#note').val(); 		
+		params.date = mysqlDateTime();
 		$.ajax({
 			type: 'POST',
 			url: APIUrl,
@@ -69,10 +83,14 @@ $(document).ready( function() {
 				if(data && data.expense){
 					var html = new EJS({url: './views/daily.ejs'}).render({data:data.expense});
 					$('#news-container').html(html);
-					$('.loader').hide();
+					
+				}else{
+					$('#news-container').html('<div class="alert alert-info"> No Record Found !</div>');
 				}
+				$('.loader').hide();
 			}).fail(function(error){
 				console.log('error');
+				$('.loader').hide();
 	  });		
 	});
 	//Active Tab
@@ -97,13 +115,17 @@ $(document).ready( function() {
 		var selected = $(this).data('value');
 		$(this).addClass('active');
 		params.action = selected;
+		params.date = mysqlDateTime();
 		$.getJSON(APIUrl,params,function(data){
 			if(data && data.expense){
 				var html = new EJS({url: './views/'+selected+'.ejs'}).render({data:data.expense});
-				$('.loader').hide();
+				
 				$('#news-container').html(html);
+			}else{
+				$('#news-container').html('<div class="alert alert-info"> No Record Found !</div>');
 			}
+			$('.loader').hide();
 			
 		});	
 	});
-});
+}

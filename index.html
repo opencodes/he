@@ -17,27 +17,7 @@
       <script src="../assets/js/html5shiv.js"></script>
     <![endif]-->
 
-    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
-    <script type="text/javascript" charset="utf-8">
-
-    // Wait for Cordova to load
-    //
-    document.addEventListener("deviceready", onDeviceReady, false);
-	var deviceInfo = {};
-    // Cordova is ready
-    //
-    function onDeviceReady() {
-        var element = document.getElementById('deviceProperties');
-
-        deviceInfo = {name:device.name,
-        			  platform:device.platform ,
-        			  uuid:device.uuid,
-        			  model:device.model,
-        			  version:device.version
-        			  }
-    }
-
-    </script>
+    
   </head>
 
   <body>
@@ -69,10 +49,11 @@
 
     <div class="container-fluid">
       <div class="row-fluid">
-		<div class="loader" style="text-align:center;display:none;">
+		     <div class="loader" style="text-align:center;display:none;">
           <h6><img src="./img/loading.gif" /></h6>  
           <p>Loading ...</p>       
         </div>
+        
         <div id="news-container">
         </div>
         </div><!--/span-->
@@ -97,6 +78,9 @@
 	<script src="js/jquery.js"></script> 
 	<script src="js/bootstrap.min.js"></script> 
 	<script src="js/ejs.js"></script>
-    <script src="js/main.js"></script> 
+  <script src="js/main.js"></script> 
+  <script type="text/javascript" charset="utf-8">
+          init('1221dqwe12e1');
+  </script>
   </body>
 </html>
