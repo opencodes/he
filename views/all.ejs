@@ -1,12 +1,30 @@
-<table class="table table-hover" border="0">    
+<table class="table " border="0">    
     <tbody>
-    <% var total=0; %>
-    <% for(var i=0; i< data.length; i++) { %>
-      <tr class="<%=  data[i].payment_mode %> all">
-        <td class='icons'><div class="icon <%=  data[i].payment_mode %> "></div></td>
-        <td><h4 ><%=  data[i].note %></h4><small><%=  data[i].payment_mode.replace('_',' ').toUpperCase() %></small></td>
-        <td><small>Rs. <%=  data[i].amount %> </small></td>
-        <td><small><%=  data[i].fdate %> </small><br><small><%=  data[i].ftime %> </small></td>
-      </tr>   
+    <% var total=0;var start = data[0].fyear; %>
+    <% for(var i=0; i< data.length; i++) { %>      
+      <% if (data[i].fyear != start) { %>
+        <tr class="total">
+          <td><strong>Total</strong></td>
+          <td><strong>Rs. <%= total %> </strong></td>
+          <td><strong><%=  data[i-1].fyear %></strong></td>        
+        </tr>
+      <% total = 0;start=data[i].fyear; %>   
+      <% } %>
+        <tr class="<%=  data[i].payment_mode %> all">
+          <td>
+              <strong><%=  data[i].note %></strong><br/>
+              <small><%=  data[i].payment_mode.replace('_',' ').toUpperCase() %></small>
+          </td>
+          <td><small>Rs. <%=  data[i].amount %> </small></td>
+          <td><small><%=  data[i].fday %> <%=  data[i].fmonth %> <%=  data[i].fyear %></small><br><small><%=  data[i].ftime %> </small></td>
+        </tr>
+      <% total+= parseInt(data[i].amount); %>  
+      <% if (i == data.length-1 ) { %>
+        <tr class="total">
+          <td><strong>Total</strong></td>
+          <td><strong>Rs. <%= total %> </strong></td>
+          <td><strong> <%=  data[i].fyear %></strong></td>        
+        </tr>
+      <% } %> 
     <% } %>
 </table>

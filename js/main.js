@@ -22,20 +22,12 @@ $(document).ready( function() {
 			}).fail(function(error){
 				console.log('error');
 	 });
-	$.getJSON(APIUrl,params,function(data){
-		$('.loader').show();
-		if(data && data.expense){
-			var html = new EJS({url: './views/daily.ejs'}).render({data:data.expense});
-			$('#news-container').html(html);
-			$('.loader').hide();
-		}
-		
-	});	
+	
 	//Refresh Data
 	$('#refresh-data').click(function(event){
 		$('.loader').show();
 		event.preventDefault();
-		var selected = $('.logo-text select').val();
+		var selected = $('.top-menu li.active').data('value');
 		params.action = selected;
 		$.getJSON(APIUrl,params,function(data){
 			if(data && data.expense){
@@ -56,6 +48,13 @@ $(document).ready( function() {
 	//Add Expense
 	$('#news-container').on('click','#add-expense-submit',function(event){
 		event.preventDefault();
+		if(!$('#amount').val()){
+			$('.amount-help').text('This is a required field.');
+			return true;
+		}else if(!$('#note').val()){
+			$('.note-help').text('This is a required field.');
+			return true;
+		}
 		$('.loader').show();
 		params.action = 'add';
 		params.amount = $('#amount').val(); 
@@ -78,18 +77,25 @@ $(document).ready( function() {
 	});
 	//Active Tab
 	$('.footer-menu').click(function(){
-		$('.loader').show();
-		$('.footer-menu').removeClass('active');
-		$(this).addClass('active');
-		$('.row table tr').hide();		
-		$('.row table tr.'+$(this).attr('id')).show();
-		$('.loader').hide();
+		
+		if($('.top-menu li.active').data('value') == 'daily'){
+			$('.loader').show();
+			$('.footer-menu').removeClass('active');
+			$('#news-container table tr').hide();		
+			$('#news-container table tr.'+$(this).attr('id')).show();
+			$('#news-container table tr.total').show();
+			$('.loader').hide();
+		}
+		
 	});	
 	//Show Different Result
-	$('.logo-text select').on('change',function(event){
+	$('.top-menu').on('click','li',function(event){
 		event.preventDefault();
 		$('.loader').show();
-		var selected = $(this).val();
+		$('.top-menu li').removeClass('active');
+		$('#hideshowmenu').trigger('click');
+		var selected = $(this).data('value');
+		$(this).addClass('active');
 		params.action = selected;
 		$.getJSON(APIUrl,params,function(data){
 			if(data && data.expense){
