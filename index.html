@@ -3,38 +3,32 @@
   <head>
     <meta charset="utf-8">
     <title>Bootstrap, from Twitter</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/> <!--320-->    <meta name="description" content="">
     <meta name="author" content="">
 
     <!-- Le styles -->
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <link href="css/bootstrap-responsive.css" rel="stylesheet">
-
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="../assets/js/html5shiv.js"></script>
     <![endif]-->
 
-    
+
   </head>
 
   <body>
 
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
-        <div class="container-fluid">
+        <div class="container">
           <div  class="btn-navbar " id="hideshowmenu" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
+            <i class="icon-align-right icon-white"></i>
           </div>
-		  <img src="img/logo.png"  height="40" width="40" class="pull-left"/>
-		  <div  class="btn-navbar pull-right" id="refresh-data"><img src="./img/refresh-icon.png"  /></div> 
-          <div id="add-expense" class="btn-navbar pull-right"><img src="./img/plus.png"  /></div> 
+		  <a href="index.html"><img src="img/logo.png"  height="40" width="40" class="pull-left"/></a>
+		  <div  class="btn-navbar pull-right" id="refresh-data"><i class="icon-refresh icon-white"></i></div> 
+          <div id="add-expense" class="btn-navbar pull-right"><i class="icon-plus icon-white"></i></div> 
           <div class="nav-collapse collapse">			
             <ul class="nav top-menu">
               <li data-value="daily" class="active"><a href="#daily">Daily</a></li>
@@ -59,11 +53,17 @@
         </div><!--/span-->
         
       </div><!--/row-->
-
+      <div class="container-fluid action">
+        <div class="row-fluid icons">
+	        <div class="span1"><a href="javascript:void(0)" id="cancel-action"><i class="icon-ok"></i></a></div>
+	        <div class="span1" id="selected-items">2 </div>
+	        <div class="span1"><a href="javascript:void(0)" id="delete-items"><i class=" icon-trash "></i></a></div>
+        </div>
+      </div>
     </div><!--/.fluid-container-->
 	   <div class="navbar navbar-fixed-bottom">
       <div class="navbar-inner">
-        <div class="container-fluid">
+        <div class="container">
           <div class="footer-menu " id="credit_card"><div class="footer-menu-text">Credit</div></div>
             <div class="footer-menu" id="debit_card"><div class="footer-menu-text">Debit</div></div>
             <div class="footer-menu" id="cash"><div class="footer-menu-text">Cash</div></div>
@@ -82,5 +82,14 @@
   <script type="text/javascript" charset="utf-8">
           init('1221dqwe12e1');
   </script>
+  <script type="text/javascript" charset="utf-8">
+    // Wait for device API libraries to load
+	/*document.addEventListener("deviceready", function(e) {
+		window.setTimeout(function() {
+			navigator.splashscreen.hide();
+			init(device.uuid);
+		},1000);		
+	}, "false"); */ 
+    </script>
   </body>
 </html>

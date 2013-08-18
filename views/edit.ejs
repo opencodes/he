@@ -1,0 +1,25 @@
+<form id="add-expense-form" method="post">
+  <div class="span12">
+	<fieldset>
+		<label><strong>Amount</strong></label> 
+		<input type="hidden" placeholder="00.00" name="id" value="<%= id %>" id="amount" class="input-block-level" required> 
+		
+		<input type="number" placeholder="00.00" name="amount" value="<%= amount%>" id="amount" class="input-block-level" required> 
+		<span class="amount-help help-block"></span> 
+		<label><strong>Payment Method</strong></label> 
+    	<select name="payment_method" id="payment_method" class="input-block-level" value="<%= payment_mode %>">
+			<option value="credit_card">Credit Card</option>
+			<option value="debit_card">Debit Card</option>
+			<option value="cash">Cash</option>		
+		</select>
+    <span class="help-block"></span> 
+    <label><strong> Note </strong></label> 
+    <input type="text" placeholder="Purchase" name="note" value="<%= note %>" id="note" class="input-block-level" required> 
+    <span class="note-help help-block"></span> 	
+		<div >
+	    <button type="button" id="edit-expense-submit" class="btn btn-info btn-large btn-block">Save changes</button>
+	    <button type="reset" class="btn btn-large btn-block">Cancel</button>
+    </div>
+	</fieldset>
+	</div>
+</form>

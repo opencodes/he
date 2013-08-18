@@ -4,18 +4,18 @@ body
  padding-bottom: 30px;
 }
 .footer-menu {
-  color: #9B9B9B;
+  color: #FFF;
   float: left;
   line-height: 36px;
   width: 25%;
 }
 .footer-menu.active {
-  background-color: #2686A9;
-  color:#fff;
+  background-color: #FFF;
+  color:#5b5b5b;
 }
 .footer-menu:hover,.footer-menu:hover a{
-  background-color: #2686A9;
-  color:#fff;
+  background-color: #FFF;
+  color:#5b5b5b;
 }
 .footer-menu-text {
   padding: 2px;
@@ -40,12 +40,22 @@ td .icon {
   padding-right: 0;
   width: 50px;
 }
-.credit_card{border-left:10px solid #90C140;}
-.debit_card{border-left:10px solid #F9A43E;}
-.cash{border-left:10px solid #D94735;}
-
+.credit_card{border-top:0px solid #f9a43e;}
+.debit_card{border-top:0px solid #2093cd;}
+.cash{border-top:0px solid #8ecd00;}
+.all {  background: none repeat scroll 0 0 #EEEEEE;}
+.all.selected {background: none repeat scroll 0 0 #dddddd;}
+.amount{width:50px;}
+.badge-td{width:60px;}
+.badge {border-radius: 1px 1px 1px 1px;font-size: 48px;height: 57px;line-height: 57px;text-align: center;width: 42px;}
+.badge.credit_card{background: none repeat scroll 0 0 #f9a43e;}
+.badge.debit_card{background: none repeat scroll 0 0 #2093cd;}
+.badge.cash{background: none repeat scroll 0 0 #8ecd00;}
+.action {background: none repeat scroll 0 0 #FFFFFF;border-bottom: 4px solid #33B5E5;box-shadow: 0 0 5px #DDDDDD;
+         height: 46px;  position: fixed;  top: 0;  width: 100%;display:none;z-index:2;}
+.action  .icons{padding:13px;}         
 fieldset {
-  margin: 10px;
+  margin: 0 10px 0px 10px;
   padding: 0;
 }
 /*Loader*/
@@ -61,12 +71,47 @@ fieldset {
 }
 .help-block{color:red;}
 .total{
-	background-color: #2686A9;
+	background-color: #5B5B5B;
 	color:#fff;
-	border-left:10px solid #2686A9;
+	border-left:1px solid #5B5B5B;
 }
 .monthtotal{
 	background-color: #000;
   color:#fff;
-  border-left:10px solid #000;
+  border-left:1px solid #000;
+}
+.nav.nav-tabs.nav-stacked{margin:5px;}
+.nav.nav-tabs.nav-stacked > li > a {
+  color:#000;
+}
+.navbar-inner {
+  background: none repeat scroll 0 0 #5B5B5B;
+  border: 1px solid transparent;
+  color: #FFFFFF; 
+  border: 1px solid #d4d4d4;  
+  *zoom: 1; 
+}
+.navbar .nav > li > a,.navbar .nav > li > a:hover {
+  color: #5B5B5B;  
+}
+.nav-collapse, .nav-collapse.collapse {
+  background-color: #FFFFFF;
+}
+.navbar .nav > .active > a, .navbar .nav > .active > a:hover, .navbar .nav > .active > a:focus {
+  background-color: #E5E5E5;
+  box-shadow: none;
+  color: #5B5B5B;
+  text-decoration: none;
+}
+.span1 {
+  float: left !important;
+  width: 60px !important;
+}
+.navbar-fixed-top {
+  margin: 0 !important;
+  position: fixed !important;
+  z-index:1;
+}
+#news-container{
+  margin-top: 50px;
 }

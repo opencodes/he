@@ -2,17 +2,22 @@
     <tbody>
     <% var total=0; %>
     <% for(var i=0; i< data.length; i++) { %>
-      <tr class="<%=  data[i].payment_mode %> all">
-        <td><strong><%=  data[i].note %></strong><br/><small><%=  data[i].payment_mode.replace('_',' ').toUpperCase() %></small></td>
-        <td><small>Rs. <%=  data[i].amount %> </small></td>
-        <td><small><%=  data[i].fday %> <%=  data[i].fmonth %> <%=  data[i].fyear %> </small><br><small><%=  data[i].ftime %> </small></td>
-      </tr> 
+      <tr class="<%=  data[i].payment_mode %> all" >
+          <td class="badge-td" data-id="<%=  data[i].id %>"><div class="badge <%=  data[i].payment_mode %>"><%=  data[i].payment_mode[0].toUpperCase() %></div></td>
+          <td class="data" data-values='<%= JSON.stringify(data[i]) %>'>
+              <strong><%=  data[i].note.charAt(0).toUpperCase() + data[i].note.slice(1)  %></strong><br/>
+              <small><%=  data[i].payment_mode.replace('_',' ').toUpperCase() %></small>
+              <br>
+              <small><%=  data[i].fday %> <%=  data[i].fmonth %> <%=  data[i].fyear %></small>
+              <small><%=  data[i].ftime %> </small>
+          </td>
+          <td class="amount"><small>Rs. <%=  data[i].amount %> </small></td>
+        </tr>
        <% total+= parseInt(data[i].amount); %>    
     <% } %>
     <tr class="total">
-        
-        <td><strong>Total</strong></td>
-        <td><strong>Rs. <%= total %> </strong></td>
-        <td></td>
+        <td>Total</td>        
+        <td><strong></strong></td>
+        <td><strong> <%= total %> </strong></td>
       </tr>
 </table>
